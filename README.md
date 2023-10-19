@@ -1,4 +1,8 @@
-## Instructions
+## Example Instrumentation of a Containerized Java App for OpenTelemetry and Grafana Cloud
+
+This repo contains a simple sample spring boot app with a REST endpoint (which resides in `sample-svc`).  We dockerize this app and
+run it without instrumentation, and then show how to instrument logs, metrics, and traces with OpenTelemetry, and report them to Grafana
+Cloud, to illustrate the basics of how to instrument opaque java apps without changing their code.
 
 ### Build Sample Java App
 
