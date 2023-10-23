@@ -4,8 +4,9 @@ metadata:
   name: otel-sdk-config
   namespace: default
 data:
+  OTEL_SERVICE_NAME: luckystreak
   OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
-  OTEL_EXPORTER_OTLP_ENDPOINT: agent
+  OTEL_EXPORTER_OTLP_ENDPOINT: agent-grafana-agent
   OTEL_TRACES_EXPORTER: otlp
   OTEL_METRICS_EXPORTER: otlp
   OTEL_LOGS_EXPORTER: otlp
