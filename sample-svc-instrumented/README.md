@@ -9,7 +9,7 @@ We'll need this file to build the instrumented container.
 ### Rebuild container, adding this file as the java agent 
 
 ```
-docker build -t sample-svc-instrumented .
+docker build --platform=linux/amd64 -t moxious/sample-svc-instrumented .
 ```
 
 ### Customize .env for your backend
@@ -20,5 +20,5 @@ information in the `.env` file.
 ### Run the instrumented container with environment variables specified
 
 ```
-docker run -p 8080:8080 --env-file ./.env sample-svc-instrumented 
+docker run -p 8080:8080 --env-file ./.env moxious/sample-svc-instrumented 
 ```

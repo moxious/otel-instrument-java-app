@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-svc-instrumented
+spec:
+  containers:
+  - name: sample-svc-instrumented
+    image: moxious/sample-svc-instrumented
+    imagePullPolicy: Always
+    resources:
+      limits:
+        cpu: "0.5"
+        memory: "512Mi"
+    ports:
+    - containerPort: 8080
+    env:
+    - name: OTEL_SERVICE_NAME
+      value: sample-svc-instrumented
+    envFrom:
+    - configMapRef:
+        name: otel-sdk-config   

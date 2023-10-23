@@ -1,4 +1,4 @@
-FROM sample-svc:latest
+FROM moxious/sample-svc:latest
 WORKDIR /app
 COPY opentelemetry-javaagent.jar /app
 

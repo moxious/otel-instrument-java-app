@@ -15,13 +15,13 @@ cd sample-svc
 
 ```
 cd sample-svc 
-docker build -t sample-svc .
+docker build --platform=linux/amd64 -t moxious/sample-svc .
 ```
 
 ### Run Sample App
 
 ```
-docker run -p 8080:8080 sample-svc
+docker run -p 8080:8080 moxious/sample-svc
 ```
 
 ### Invoke Sample App
@@ -38,7 +38,7 @@ and including them as the java agent at runtime.
 
 ```
 cd sample-svc-instrumented
-docker build -t sample-svc-instrumented .
+docker build --platform=linux/amd64 -t moxious/sample-svc-instrumented .
 ```
 
 ### Configure Reporting to Grafana Cloud
@@ -51,13 +51,12 @@ environment variables](https://opentelemetry.io/docs/specs/otel/configuration/sd
 ```
 OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 OTEL_EXPORTER_OTLP_ENDPOINT=https://otlp-gateway-prod-us-east-0.grafana.net/otlp
-GRAFANA_INSTANCE_ID=522677
-OTEL_EXPORTER_OTLP_HEADERS="Authorization=Basic (secret see below)"
+OTEL_EXPORTER_OTLP_HEADERS=Authorization=Basic (secret see below)
 OTEL_TRACES_EXPORTER=otlp
 OTEL_METRICS_EXPORTER=otlp
 OTEL_LOGS_EXPORTER=otlp
-OTEL_SERVICE_NAME="sample-svc-instrumented"
-OTEL_NODE_RESOURCE_DETECTORS="all"
+OTEL_SERVICE_NAME=sample-svc-instrumented
+OTEL_NODE_RESOURCE_DETECTORS=all
 OTEL_LOG_LEVEL=verbose
 ```
 
@@ -73,5 +72,5 @@ you can use for the auth header. In the end, your auth header should be:
 
 `docker run -p 8080:8080 --env-file ./.env sample-svc-instrumented`
 
-
+**Important note**: docker doesn't strip `"` characters from the env file as bash would.  Be careful not to use double quotes around values when specified in this way.
 
